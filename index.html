@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faith and Opportunity — Wilson Odo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0c0b09;
+      --bg2: #131210;
+      --bg3: #1a1815;
+      --cream: #f0ead8;
+      --cream2: #c9c3b0;
+      --gold: #c9a84c;
+      --gold2: #e8c96a;
+      --red: #c94c4c;
+      --border: rgba(201,168,76,0.2);
+      --border2: rgba(240,234,216,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(12,11,9,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.2em;
+      color: var(--gold); text-transform: uppercase; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      color: var(--cream2); text-decoration: none; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 80% at 80% 30%, rgba(201,168,76,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 300; line-height: 0.9;
+      color: var(--cream); margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 1s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.25rem; font-weight: 300; color: var(--cream2);
+      max-width: 540px; line-height: 1.7;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+    }
+    .hero-cta {
+      margin-top: 3.5rem;
+      opacity: 0; animation: fadeUp 1s ease 0.8s forwards;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .btn-primary {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      background: var(--gold); color: var(--bg);
+      padding: 1rem 2.5rem; text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-secondary {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      border: 1px solid var(--border); color: var(--cream2);
+      padding: 1rem 2.5rem; text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute; bottom: 3rem; left: 3rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; color: var(--cream2);
+      text-transform: uppercase; writing-mode: vertical-rl;
+      opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-section {
+      padding: 3rem;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .progress-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    }
+    .progress-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .progress-bar-outer {
+      width: 100%; height: 3px; background: rgba(240,234,216,0.1);
+      position: relative; overflow: hidden;
+    }
+    .progress-bar-inner {
+      height: 100%; background: var(--gold);
+      width: 0%;
+      transition: width 1.5s ease;
+    }
+    .progress-meta {
+      display: flex; justify-content: space-between; margin-top: 0.75rem;
+      font-size: 0.8rem; color: var(--cream2);
+      font-family: 'Space Mono', monospace;
+    }
+    .progress-amount {
+      text-align: right;
+    }
+    .progress-amount .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300; color: var(--cream);
+      display: block;
+    }
+    .progress-amount .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream2);
+      text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 7rem 3rem; max-width: 1100px; margin: 0 auto; }
+    .section-narrow { max-width: 720px; }
+
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-tag::after {
+      content: ''; flex: 1; max-width: 60px;
+      height: 1px; background: var(--gold); opacity: 0.4;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 2rem; color: var(--cream);
+    }
+    h2 em { font-style: italic; color: var(--gold); }
+
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400;
+      margin-bottom: 1rem; color: var(--cream);
+    }
+
+    p { margin-bottom: 1.4rem; color: var(--cream2); }
+    p strong { color: var(--cream); font-weight: 600; }
+
+    /* ── STORY ── */
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+      align-items: start;
+    }
+    .story-image-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .story-image-placeholder::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+    }
+    .story-image-placeholder span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; color: var(--cream2);
+      text-transform: uppercase; opacity: 0.5;
+    }
+    .story-timeline {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .timeline-item {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 1.5rem; padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border2);
+    }
+    .timeline-year {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em;
+      padding-top: 0.2rem;
+    }
+    .timeline-text {
+      font-size: 0.95rem; color: var(--cream2); line-height: 1.6;
+    }
+    .timeline-text strong { color: var(--cream); }
+
+    /* ── STORY PROSE ── */
+    .prose {
+      font-size: 1.1rem; line-height: 1.85; color: var(--cream2);
+    }
+    .prose p { margin-bottom: 1.6rem; }
+    .prose .pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-style: italic; font-weight: 300;
+      color: var(--cream); line-height: 1.4;
+      border-left: 3px solid var(--gold);
+      padding: 1rem 0 1rem 2rem;
+      margin: 2.5rem 0;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── OFFERS ── */
+    .offers-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+      margin-top: 4rem;
+    }
+    .offer-card {
+      background: var(--bg2);
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .offer-card:hover { border-color: var(--gold); }
+    .offer-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300; color: rgba(201,168,76,0.12);
+      line-height: 1; position: absolute; top: 1.5rem; right: 2rem;
+    }
+    .offer-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 500;
+      color: var(--cream); margin-bottom: 1.2rem;
+    }
+    .offer-body {
+      font-size: 0.95rem; color: var(--cream2); line-height: 1.7;
+    }
+    .offer-certainty {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border2);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .offer-footnote {
+      margin-top: 1rem;
+      font-size: 0.8rem; color: var(--red); line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── TIERS ── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .tier-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .tier-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .tier-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.25em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .tier-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .tier-desc {
+      font-size: 0.85rem; color: var(--cream2); line-height: 1.6;
+    }
+    .tier-certain {
+      margin-top: 1rem; padding-top: 1rem;
+      border-top: 1px solid var(--border2);
+      font-size: 0.8rem; color: var(--gold); font-style: italic;
+    }
+
+    /* ── CALCULATOR ── */
+    .calculator {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 3.5rem;
+      margin-top: 4rem;
+    }
+    .calc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .calc-subtitle {
+      font-size: 0.9rem; color: var(--cream2); margin-bottom: 2.5rem;
+    }
+    .calc-amounts {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem;
+    }
+    .calc-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem; padding: 0.6rem 1.2rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--cream2); cursor: pointer;
+      transition: all 0.2s; letter-spacing: 0.05em;
+    }
+    .calc-btn:hover, .calc-btn.active {
+      background: var(--gold); border-color: var(--gold); color: var(--bg);
+    }
+    .calc-custom {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+    }
+    .calc-custom label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.15em; color: var(--cream2);
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .calc-custom input {
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--cream); padding: 0.6rem 1rem;
+      font-family: 'Space Mono', monospace; font-size: 0.8rem;
+      width: 150px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .calc-custom input:focus { border-color: var(--gold); }
+    .calc-result {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .calc-result-item {}
+    .calc-result-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; letter-spacing: 0.18em; color: var(--cream2);
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .calc-result-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300; color: var(--cream);
+    }
+    .calc-result-value.gold { color: var(--gold); }
+    .calc-disclaimer {
+      margin-top: 1.5rem; padding: 1rem 1.5rem;
+      border-left: 3px solid var(--red);
+      font-size: 0.82rem; color: var(--red); line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── DONATE CTA ── */
+    .donate-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+    .donate-inner { max-width: 680px; margin: 0 auto; }
+    .donate-section h2 { margin-bottom: 1.5rem; }
+    .donate-section p { margin-bottom: 3rem; font-size: 1.1rem; }
+    .donate-steps {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2rem; margin-bottom: 3rem; text-align: left;
+    }
+    .donate-step {
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .donate-step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .donate-step h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--cream); margin-bottom: 0.5rem;
+    }
+    .donate-step p {
+      font-size: 0.9rem; color: var(--cream2); margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-left {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--cream2);
+    }
+    .footer-links {
+      display: flex; gap: 2rem;
+    }
+    .footer-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream2);
+      text-decoration: none; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .section { padding: 5rem 1.5rem; }
+      .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .story-image-placeholder { aspect-ratio: 16/9; }
+      .offers-grid { grid-template-columns: 1fr; }
+      .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-result { grid-template-columns: 1fr 1fr; }
+      .calculator { padding: 2rem; }
+      .donate-steps { grid-template-columns: 1fr; }
+      .progress-inner { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 3.5rem; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .calc-result { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Faith &amp; Opportunity</a>
+  <div class="nav-links">
+    <a href="#story">The Journey</a>
+    <a href="#offers">The Offers</a>
+    <a href="#donate">Donate</a>
+    <a href="sketches.html">Sketches</a>
+    <a href="writings.html">Writings</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Wilson Odo · Graduate School Campaign · 2026</div>
+  <h1 class="hero-title">Faith<br>and <em>Oppor-<br>tunity</em></h1>
+  <p class="hero-sub">
+    Help a builder get to Johns Hopkins.<br>
+    Receive something worth more than money.
+  </p>
+  <div class="hero-cta">
+    <a href="#donate" class="btn-primary">Support Wilson</a>
+    <a href="#story" class="btn-secondary">Read the Journey</a>
+  </div>
+  <span class="hero-scroll">Scroll to read</span>
+</section>
+
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="progress-inner">
+    <div>
+      <div class="progress-label">Campaign Progress</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="progressBar"></div>
+      </div>
+      <div class="progress-meta">
+        <span id="progressText">$0 raised of $74,243 goal</span>
+        <span id="donorCount">Be the first to donate</span>
+      </div>
+    </div>
+    <div class="progress-amount">
+      <span class="big" id="progressDisplay">$0</span>
+      <span class="label">raised so far</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="section section-narrow" id="story">
+  <div class="section-tag">The Journey</div>
+  <h2>From Nigeria<br>to<br><em>Johns Hopkins</em></h2>
+
+  <div class="prose">
+    <p>
+      It started on Christmas Eve, 2009. Everyone was asleep. I was awake, restless, and bored,
+      so I tried out a gift my father had bought, a View-Master and its accompanying discs.
+      As I peered through its lenses, I was completely immersed in stunning New York scenery.
+      For all I cared, I was no longer home. I was in New York.
+    </p>
+
+    <p>
+      That moment planted a seed. By age 13, I had set a goal: to create the world's first
+      dynamic, persistent, wholly immersive virtual world, one that would untether the human
+      experience from the laws of physical reality. Almost everything I have done since has been
+      in service of that goal.
+    </p>
+
+    <p>
+      In 2016, my father had an accident. The road the government refused to fix. Our family fell.
+      Middle class became poverty, fast. I was fifteen. So I started a retail chocolate business. Whatever
+      it took.
+    </p>
+
+    <p>
+      At seventeen I launched Ouche, a fashion-tech startup. Managed suppliers in China, built
+      a sales team, reached ₦2,000,000 in annual revenue. The following year I helped my brother
+      start Odo Labs, an IT services company. I ran the business side, did hardware engineering
+      part-time. Then in 2019, I earned a scholarship to study Computer Engineering in Turkey.
+      I arrived and spent the first year learning Turkish before a single lecture in my field.
+    </p>
+
+    <p>
+      Then COVID arrived. Early. Before there was a vaccine. Before there was a cure.
+      The hospitals were full. I got sick, in isolation, alone, far from home, with no treatment
+      available and nowhere to go. The politicians had downplayed it. The streets outside
+      my window filled with protests. I watched from quarantine, too sick to leave.
+    </p>
+
+    <p>
+      I resolved to live. I started reading, obsessively and voraciously. History of Black people.
+      Politics. Geopolitics. I began to understand why countries are mismanaged. Why the road
+      that broke my father was never fixed. Why I had to leave Nigeria to get an education worth
+      having. Man's Search for Meaning helped me more than I can say.
+    </p>
+
+    <p>
+      I could not quit school. My scholarship was valid for four consecutive years only.
+      I pushed through, sick, isolated, building and reading and surviving.
+      I graduated on time.
+    </p>
+
+    <p>
+      I was admitted to Brown, Duke, and Johns Hopkins. Brown had the most scholarship. I chose Brown.
+      I arrived in the summer, ready to begin graduate school. Then I was removed. Over $200 in
+      course materials I could not pay for on time. Not a grade. Not a misconduct. Two hundred dollars.
+      The system did not bend.
+    </p>
+
+    <p>
+      Now I hold a new admission letter. Johns Hopkins University. M.S. in Engineering Management,
+      Innovation and Multidisciplinary Design. Fall 2026. With a $20,000 scholarship.
+      I still need $74,243 to cover the full year.
+    </p>
+
+    <p>
+      I am not asking for charity. I am making you an offer.
+    </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" style="padding-top:0">
+  <div class="story-grid">
+    <div class="story-image-placeholder">
+      <span>Faith &amp; Opportunity<br>Sketch — Coming Soon</span>
+    </div>
+    <div class="story-timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2009</div>
+        <div class="timeline-text"><strong>The View-Master.</strong> Christmas Eve in Nigeria. The seed is planted.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2016</div>
+        <div class="timeline-text"><strong>Father's accident.</strong> The road the government refused to fix. Family falls from middle class to poverty. Starts selling chocolate the same year.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2017</div>
+        <div class="timeline-text"><strong>Ouche.</strong> Fashion-tech startup at age 17. Suppliers in China, commission sales team nationwide. Reaches ₦2M revenue.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-text"><strong>Odo Labs.</strong> Co-founds with his brother. Business lead and part-time hardware engineer. ZikSwap also begins.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-text"><strong>Scholarship to Turkey.</strong> Spends first year learning Turkish before studying Computer Engineering. Leaves Nigeria.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2020</div>
+        <div class="timeline-text"><strong>COVID. No vaccine. No treatment.</strong> Sick, isolated, hospitals full. Resolves to live. Reads obsessively. Cannot quit, scholarship valid four consecutive years only. Graduates on time.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-text"><strong>Research at UIUC &amp; Sabancı.</strong> Builds a custom LLM. Admitted to Brown, Duke, JHU.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-text"><strong>Removed from Brown</strong> over $200 in course materials. The system does not bend.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-text"><strong>New admission. Johns Hopkins.</strong> $20,000 scholarship. $74,243 still needed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- OFFERS -->
+<section class="section" id="offers">
+  <div class="section-tag">What I Am Offering</div>
+  <h2>Three offers.<br><em>Real ones.</em></h2>
+  <p style="max-width:600px; font-size:1.05rem; margin-bottom:0">
+    I am not promising returns that are necessarily financial. I am promising something worth more, and much more dynamic than a few multiples of your donation. Read carefully.
+  </p>
+
+  <div class="offers-grid">
+    <!-- OFFER 1 -->
+    <div class="offer-card">
+      <div class="offer-number">I</div>
+      <div class="offer-title">The Picasso Sketches</div>
+      <div class="offer-body">
+        <p>Imagine getting your hands on the sketches Picasso made to pay for college.</p>
+        <p>
+          I am making a series of original hand-drawn sketches titled <strong>Faith and Opportunity</strong>.
+          The series depicts a young man born into a middle-class family who fell into poverty
+          after his father's tragic accident, battling severe obstacles as he progresses toward
+          his goal.
+        </p>
+        <p>
+          Each sketch will be signed by me, titled <em>Faith and Opportunity</em>, and inscribed
+          with a unique number. A digital version will be delivered first. Physical sketches
+          will be shipped from the United States once I arrive to begin my program in Fall 2026.
+          Please note: international shipping from Turkey carries significant delays and taxes —
+          US shipping is faster, cheaper, and more reliable. You will be notified of your
+          sketch's status.
+        </p>
+        <p>Keep your unique number and any hash figures I send privately. You will need them.</p>
+      </div>
+      <div class="offer-certainty">✓ Certain — this you will receive</div>
+    </div>
+
+    <!-- OFFER 2 -->
+    <div class="offer-card">
+      <div class="offer-number">II</div>
+      <div class="offer-title">The Blockchain</div>
+      <div class="offer-body">
+        <p>
+          It should not come as a surprise that I am at least somewhat ambitious.
+          I hope to build a consequential blockchain, and I do not use the word consequential
+          lightly.
+        </p>
+        <p>
+          Consequential technology is technology that has intense, positive effects on the
+          human experience. This blockchain, whose purpose I cannot yet reveal, was the
+          subject of my final year research project. It will have a <em>"voice"</em>, and the
+          first few blocks will be named after those who supported me.
+        </p>
+        <p>
+          In every subsequent block, till eternity, your record will be embedded, indicating
+          that you helped me pay for graduate school at a crucial moment. On the day it goes
+          live, the Voice will reach out to you with your block location and a place to input
+          your hash figure for a special, private message.
+        </p>
+        <p>
+          If not a blockchain, then on another consequential product I build. Building this
+          blockchain remains one of my most cherished goals.
+        </p>
+      </div>
+      <div class="offer-certainty">✓ Certain — if the product is built, your record is in it</div>
+    </div>
+
+    <!-- OFFER 3 -->
+    <div class="offer-card">
+      <div class="offer-number">III</div>
+      <div class="offer-title">The Financial Return</div>
+      <div class="offer-body">
+        <p>
+          I would make you an offer for an income share agreement, an ISA. But this has proven
+          difficult to set up from where I currently live. And beyond logistics, an ISA presents
+          a danger I have to be honest with you about.
+        </p>
+        <p>
+          It potentially exposes me to harm. A malicious party could make me an offer in expectation
+          of harming me, so they can write it off as a loss on their books and gain the benefits
+          that come with it. Insurance compensation, tax write-offs. This is not paranoia. It happens.
+          I will not structure anything that makes my life a financial instrument someone else holds.
+        </p>
+        <p>
+          In offering this deal the way I have, I am trying to ensure my well-being and the
+          certainty of great returns for those who genuinely support me at a crucial time.
+        </p>
+        <p>
+          What I can tell you is this: I intend to pay you back. Within approximately five years of
+          starting work, I hope to return your donation plus 10%. Use the calculator below.
+          I mean it. But for my safety, it is not a contract and it is not owed.
+        </p>
+      </div>
+      <div class="offer-certainty">◈ Discretionary — intended but not legally owed</div>
+      <div class="offer-footnote">
+        ⚠ Any financial return is entirely at Wilson's discretion. This is not an investment,
+        not a contract, and no return is legally promised or owed. This structure exists
+        deliberately, for Wilson's personal safety. You are purchasing an educational
+        donation packet, not an investment in a person.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- TIERS -->
+<section class="section" id="tiers">
+  <div class="section-tag">Donation Tiers</div>
+  <h2>Make a Donation<br><em>Tiers</em></h2>
+  <p style="max-width:600px">
+    Every donor receives a sketch from the Faith and Opportunity series.
+    As stated earlier, the physical sketches will be shipped to your address. 
+    And a secret hashnumber will be sent to you privately, please keep it safe.
+  </p>
+
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <div class="tier-label">Tier A</div>
+      <div class="tier-amount">$1 – $49</div>
+      <div class="tier-desc">
+        Digital sketch from the Faith and Opportunity series. Personalised digital thank-you note.
+        Your name in the record.
+      </div>
+      <div class="tier-certain">Digital delivery</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-label">Tier B</div>
+      <div class="tier-amount">$50 – $299</div>
+      <div class="tier-desc">
+        Signed original sketch shipped from the US from Fall 2026.
+        Handwritten personal thank-you note. Unique number and hash figure.
+      </div>
+      <div class="tier-certain">Physical + digital</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-label">Tier C</div>
+      <div class="tier-amount">$300 – $999</div>
+      <div class="tier-desc">
+        Dedicated original sketch named after you or your chosen subject.
+        Prominent early acknowledgment. Unique number and hash figure.
+        Shipped from the US.
+      </div>
+      <div class="tier-certain">Dedicated piece</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-label">Tier D</div>
+      <div class="tier-amount">$1,000+</div>
+      <div class="tier-desc">
+        Large dedicated original sketch from the Faith and Opportunity series.
+        First acknowledgment when success comes. Permanent blockchain record.
+        Direct contact with Wilson.
+      </div>
+      <div class="tier-certain">Legacy contribution</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="section" style="padding-top:0">
+  <div class="calculator">
+    <div class="calc-title">What could come back to you?</div>
+    <p class="calc-subtitle">
+      Select or enter an amount to see what Wilson intends, at his discretion, within five years of starting work, to return.
+    </p>
+    <div class="calc-amounts">
+      <button class="calc-btn" data-amount="1">$1</button>
+      <button class="calc-btn" data-amount="10">$10</button>
+      <button class="calc-btn" data-amount="20">$20</button>
+      <button class="calc-btn" data-amount="25">$25</button>
+      <button class="calc-btn" data-amount="30">$30</button>
+      <button class="calc-btn" data-amount="40">$40</button>
+      <button class="calc-btn" data-amount="50">$50</button>
+      <button class="calc-btn" data-amount="55">$55</button>
+      <button class="calc-btn" data-amount="70">$70</button>
+      <button class="calc-btn" data-amount="120">$120</button>
+      <button class="calc-btn" data-amount="130">$130</button>
+      <button class="calc-btn" data-amount="150">$150</button>
+      <button class="calc-btn" data-amount="1000">$1,000</button>
+      <button class="calc-btn" data-amount="2000">$2,000</button>
+      <button class="calc-btn" data-amount="2100">$2,100</button>
+      <button class="calc-btn" data-amount="2200">$2,200</button>
+      <button class="calc-btn" data-amount="2300">$2,300</button>
+      <button class="calc-btn" data-amount="5000">$5,000</button>
+    </div>
+    <div class="calc-custom">
+      <label>Or enter amount: $</label>
+      <input type="number" id="customAmount" placeholder="Your amount" min="1"/>
+    </div>
+    <div class="calc-result">
+      <div class="calc-result-item">
+        <div class="calc-result-label">You give</div>
+        <div class="calc-result-value" id="calcGive">—</div>
+      </div>
+      <div class="calc-result-item">
+        <div class="calc-result-label">Possible return (10%)</div>
+        <div class="calc-result-value gold" id="calcReturn">—</div>
+      </div>
+      <div class="calc-result-item">
+        <div class="calc-result-label">Timeline</div>
+        <div class="calc-result-value" style="font-size:1.2rem; padding-top:0.8rem" id="calcTimeline">—</div>
+      </div>
+    </div>
+    <div class="calc-disclaimer">
+      ⚠ Any financial return shown here is entirely at Wilson's personal discretion and is not promised or guaranteed.
+      The figures above reflect Wilson's genuine intention only.
+      I have structured this deliberately to protect myself and guarantee my own safety. So no one harms me hoping to claim insurance benefits for an investment loss. This is not an investment in such sense. You are purchasing an educational donation packet, not a financial instrument.
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- DONATE CTA -->
+<section class="donate-section" id="donate">
+  <div class="donate-inner">
+    <div class="section-tag" style="justify-content:center">How to support</div>
+    <h2>Two steps.<br><em>That is all.</em></h2>
+    <p>
+      Fill the form to record your name, email, and shipping address for your sketch.
+      Then complete your donation on the campaign page.
+    </p>
+    <div class="donate-steps">
+      <div class="donate-step">
+        <div class="donate-step-num">Step 01</div>
+        <h4>Register your details</h4>
+        <p>Your name, email, shipping address, tier, and amount, so Wilson can send your sketch and keep your record.</p>
+        <br/>
+        <a href="YOUR_GOOGLE_FORM_LINK" class="btn-primary" target="_blank" style="font-size:0.65rem">Fill the Form</a>
+      </div>
+      <div class="donate-step">
+        <div class="donate-step-num">Step 02</div>
+        <h4>Complete your donation</h4>
+        <p>Donate securely via the campaign page. Any amount is welcome, every contribution moves Wilson closer to Baltimore.</p>
+        <br/>
+        <a href="YOUR_CROWDR_LINK" class="btn-primary" target="_blank" style="font-size:0.65rem">Donate Now</a>
+      </div>
+    </div>
+    <p style="font-size:0.85rem; color:var(--cream2)">
+      For contributions of $1,000 or more, you may also contact Wilson directly at
+      <a href="mailto:i.odowilson@gmail.com" style="color:var(--gold)">i.odowilson@gmail.com</a>
+      to arrange transfer details.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    Faith and Opportunity · Wilson Odo · JHU MSEM 2026
+  </div>
+  <div class="footer-links">
+    <a href="sketches.html">Sketches</a>
+    <a href="writings.html">Writings</a>
+    <a href="https://www.linkedin.com/in/wilsonodo/" target="_blank">LinkedIn</a>
+    <a href="https://odowilson.github.io/ucwilson/" target="_blank">Wilson's Website</a>
+    <a href="mailto:i.odowilson@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // ── Progress bar data ──
+  // UPDATE THESE TWO VALUES AS DONATIONS COME IN
+  const RAISED = 0;
+  const GOAL = 74243;
+  const DONOR_COUNT = 0;
+
+  function updateProgress() {
+    const pct = Math.min((RAISED / GOAL) * 100, 100);
+    const bar = document.getElementById('progressBar');
+    const display = document.getElementById('progressDisplay');
+    const text = document.getElementById('progressText');
+    const donors = document.getElementById('donorCount');
+
+    display.textContent = '$' + RAISED.toLocaleString();
+    text.textContent = '$' + RAISED.toLocaleString() + ' raised of $' + GOAL.toLocaleString() + ' goal';
+
+    if (DONOR_COUNT >= 5) {
+      bar.style.width = pct + '%';
+      donors.textContent = DONOR_COUNT + ' donors';
+    } else if (DONOR_COUNT > 0) {
+      donors.textContent = DONOR_COUNT + ' donor' + (DONOR_COUNT > 1 ? 's' : '') + ' so far';
+    } else {
+      donors.textContent = 'Be the first to donate';
+    }
+  }
+  updateProgress();
+
+  // ── Calculator ──
+  let selectedAmount = null;
+
+  function formatCurrency(n) {
+    return '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2});
+  }
+
+  function updateCalc(amount) {
+    if (!amount || isNaN(amount) || amount <= 0) {
+      document.getElementById('calcGive').textContent = '—';
+      document.getElementById('calcReturn').textContent = '—';
+      document.getElementById('calcTimeline').textContent = '—';
+      return;
+    }
+    const returnAmt = (amount * 1.1).toFixed(2);
+    document.getElementById('calcGive').textContent = formatCurrency(amount);
+    document.getElementById('calcReturn').textContent = formatCurrency(returnAmt);
+    document.getElementById('calcTimeline').textContent = 'Within ~5 years of Wilson starting work';
+  }
+
+  document.querySelectorAll('.calc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('customAmount').value = '';
+      selectedAmount = parseFloat(btn.dataset.amount);
+      updateCalc(selectedAmount);
+    });
+  });
+
+  document.getElementById('customAmount').addEventListener('input', function() {
+    document.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
+    const val = parseFloat(this.value);
+    updateCalc(val);
+  });
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.offer-card, .tier-card, .timeline-item, .donate-step').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

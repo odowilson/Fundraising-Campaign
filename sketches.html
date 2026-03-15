@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faith and Opportunity — Sketches</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0c0b09; --bg2: #131210; --bg3: #1a1815;
+      --cream: #f0ead8; --cream2: #c9c3b0;
+      --gold: #c9a84c; --gold2: #e8c96a;
+      --border: rgba(201,168,76,0.2); --border2: rgba(240,234,216,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--cream); font-family: 'Crimson Pro', Georgia, serif; font-size: 18px; line-height: 1.75; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(12,11,9,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--cream2); text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    .page-header {
+      padding: 10rem 3rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 300; line-height: 0.95; margin-bottom: 2rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .header-desc { font-size: 1.1rem; color: var(--cream2); max-width: 580px; border-left: 2px solid var(--gold); padding-left: 1.5rem; }
+
+    .section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+    .series-statement {
+      background: var(--bg2); border: 1px solid var(--border);
+      padding: 3.5rem; margin-bottom: 5rem;
+    }
+    .series-statement h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--cream); margin-bottom: 1.5rem; }
+    .series-statement p { color: var(--cream2); margin-bottom: 1.2rem; font-size: 1.05rem; }
+    .series-statement p:last-child { margin-bottom: 0; }
+
+    .sketches-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .sketch-card { position: relative; overflow: hidden; }
+    .sketch-placeholder {
+      aspect-ratio: 3/4; background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem; text-align: center;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .sketch-placeholder:hover { border-color: var(--gold); }
+    .sketch-placeholder::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+    }
+    .sketch-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.15);
+      margin-bottom: 1rem;
+    }
+    .sketch-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream); margin-bottom: 0.5rem; }
+    .sketch-status { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+
+    .shipping-note {
+      margin-top: 4rem; padding: 2.5rem;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .shipping-note h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--cream); margin-bottom: 1rem; }
+    .shipping-note p { color: var(--cream2); font-size: 0.95rem; margin-bottom: 0.8rem; }
+
+    footer { padding: 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-left { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cream2); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--cream2); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 8rem 1.5rem 3rem; }
+      .section { padding: 4rem 1.5rem; }
+      .sketches-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .sketches-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Faith &amp; Opportunity</a>
+  <div class="nav-links">
+    <a href="index.html#story">The Journey</a>
+    <a href="index.html#offers">The Offers</a>
+    <a href="index.html#donate">Donate</a>
+    <a href="sketches.html" class="active">Sketches</a>
+    <a href="writings.html">Writings</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="section-tag">The Series</div>
+  <h1>Faith and<br><em>Opportunity</em></h1>
+  <p class="header-desc">
+    Original hand-drawn sketches by Wilson Odo. A visual record of a journey from Nigeria to one of the world's great universities.
+  </p>
+</div>
+
+<section class="section">
+  <div class="series-statement">
+    <h2>About the Series</h2>
+    <p>
+      Faith and Opportunity is the story of a young man born into a middle-class family who fell
+      into poverty after his father's tragic accident. The sketches depict him battling severe
+      obstacles as he progresses toward his goal. Each piece is a chapter in a journey that is
+      still being written.
+    </p>
+    <p>
+      Every original sketch is signed by Wilson, numbered, and comes with a unique hashfigure
+      sent privately to the donor. Keep it safe and confidential. The number and hashfigure are
+      your record. You will need them.
+    </p>
+    <p>
+      Shipping of physical sketches begins Fall 2026, after Wilson resumes at Johns Hopkins.
+    </p>
+  </div>
+
+  <div class="sketches-grid">
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">01</div>
+        <div class="sketch-title">The Village</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">02</div>
+        <div class="sketch-title">The Accident</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">03</div>
+        <div class="sketch-title">The Road Not Fixed</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">04</div>
+        <div class="sketch-title">First Business, Age 15</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">05</div>
+        <div class="sketch-title">Quarantine</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+    <div class="sketch-card">
+      <div class="sketch-placeholder">
+        <div class="sketch-num">06</div>
+        <div class="sketch-title">The Letter</div>
+        <div class="sketch-status">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipping-note">
+    <h3>A Note on Delivery</h3>
+    <p>
+      Digital sketches will be delivered to your email first and will begin as the series develops.
+    </p>
+    <p>
+      Physical sketches ship from the United States starting Fall 2026, once Wilson resumes at
+      Johns Hopkins. Shipping from Turkey is unreliable, expensive, and subject to unnecessary
+      taxes and delays. US shipping is faster and ensures your sketch arrives properly.
+    </p>
+    <p>
+      All donors who provided a shipping address at registration will be contacted directly
+      with updates on their sketch.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Faith and Opportunity · Wilson Odo · JHU MSEM 2026</div>
+  <div class="footer-links">
+    <a href="index.html">Campaign</a>
+    <a href="writings.html">Writings</a>
+    <a href="https://odowilson.github.io/ucwilson/" target="_blank">Wilson's Website</a>
+    <a href="mailto:i.odowilson@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
