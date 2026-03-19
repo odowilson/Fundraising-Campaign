@@ -605,7 +605,7 @@
       <span class="section-tag-text">The Journey</span>
       <span style="display:inline-flex; gap:0.5rem; align-items:center">
         <span class="details-toggle">Read the Journey</span>
-        <button class="details-clear" aria-controls="story">Pull</button>
+        <button class="details-clear" aria-controls="story">Clear</button>
       </span>
     </summary>
     <h2>From Nigeria<br>to<br><em>Johns Hopkins</em></h2>
@@ -731,7 +731,7 @@
 <!-- OFFERS -->
 <section class="section" id="offers">
   <div class="section-tag">What I Am Offering</div>
-  <h2>Three offers,<br><em>I Want To Make You.</em></h2>
+  <h2>Three offers.<br><em>Real ones.</em></h2>
   <p style="max-width:600px; font-size:1.05rem; margin-bottom:0">
     I am not promising returns that are necessarily financial. I am promising something worth more, and much more dynamic than a few multiples of your donation. Read carefully.
   </p>
@@ -820,9 +820,10 @@
       </div>
       <div class="offer-certainty">◈ Discretionary — intended but not legally owed</div>
       <div class="offer-footnote">
-        ⚠ Any financial return is entirely at my discretion. This is what I intend to pay out to the donoers once I graduate and start making some money.
-        This is as my heart directs and what I intend to do, however this cannot be classified as an investment or contract
-        for the reasons I have talked about in this description.
+        ⚠ Any financial return is entirely at my discretion. This is not an investment,
+        not a contract, and no return is legally promised or owed. This structure exists
+        deliberately, for my own safety. You are purchasing an educational
+        donation packet, not an investment in a person.
       </div>
     </div>
   </div>
@@ -987,7 +988,7 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Progress bar data ──
   // UPDATE THESE TWO VALUES AS DONATIONS COME IN
-  const RAISED = 7000;
+  const RAISED = 0;
   const GOAL = 74243;
   const DONOR_COUNT = 0;
 
@@ -1001,20 +1002,11 @@
     display.textContent = '$' + RAISED.toLocaleString();
     text.textContent = '$' + RAISED.toLocaleString() + ' raised of $' + GOAL.toLocaleString() + ' goal';
 
-    // Ensure the CSS transition triggers reliably by setting width in the next paint.
-    if (bar) {
-      // reset to 0% inline (CSS already sets 0% but force a reflow to be safe)
-      bar.style.width = '0%';
-      // double RAF to ensure layout applied before changing width
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        bar.style.width = pct + '%';
-        if (pct > 0) bar.classList.add('active');
-      }));
-    }
-
     if (DONOR_COUNT >= 5) {
+      setTimeout(() => { bar.style.width = pct + '%'; if (pct > 0) bar.classList.add('active'); }, 300);
       donors.textContent = DONOR_COUNT + ' donors';
     } else if (DONOR_COUNT > 0) {
+      setTimeout(() => { bar.style.width = pct + '%'; if (pct > 0) bar.classList.add('active'); }, 300);
       donors.textContent = DONOR_COUNT + ' donor' + (DONOR_COUNT > 1 ? 's' : '') + ' so far';
     } else {
       donors.textContent = 'Be the first to donate';
@@ -1057,17 +1049,6 @@
     const val = parseFloat(this.value);
     updateCalc(val);
   });
-
-  // wire the small test control to add simulated donations (for demo/testing)
-  const testAddBtn = document.getElementById('testAdd');
-  if (testAddBtn) {
-    testAddBtn.addEventListener('click', () => {
-      const v = Number(document.getElementById('testAmount').value) || 0;
-      if (v > 0) {
-        addDonation(v);
-      }
-    });
-  }
 
   // ── Scroll reveal ──
   const observer = new IntersectionObserver((entries) => {
